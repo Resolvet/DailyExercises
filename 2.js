@@ -13,4 +13,4 @@ obj.inner.print();  //6
 var fn=obj.inner.print; 
 fn(); //88
 (obj.inner.print)(); //6
-(obj.inner.print=obj.inner.print)(); //88
+(obj.inner.print=obj.inner.print)(); //88 
