@@ -11,4 +11,5 @@
     }
     var str="border-left-color";
     tansform(str);
+    //^_^
 })()
