@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var peranle=[
+            {name: "king",age: 20, class: "5"},
+            {name: "jing",age: 19, class: "1"},
+            {name: "bloack",age: 20, class: "9"},
+            {name: "junhan",age: 23, class: "8"},
+            {name: "hangle",age: 29, class: "4"}
+        ];
+
+        var temp=[];
+
+        peranle.forEach((item,index,arr)=>{
+            temp.push(item.name);
+        })  
+
+        Array.prototype.myfoeEach=function (fnc){
+            for(var i=0; i<this.length; i++){
+                fnc(this[i],i)
+            }
+        }
+        
+        Array.prototype.myfilter=function (fnc){
+            var temp=[];
+            for(var i=0; i<this.length; i++){
+                if(fnc(this[i],i)){
+                    temp.push(this[i]);
+                }
+            }
+            return temp;
+        }
+
+        var arr=peranle.myfilter(function (item,index){
+                if(item.age>20){
+                    return true
+                }
+        })
+
+        console.log(arr);
+
+        var arr=peranle.map(function (item,index){
+            if(item.age==19){
+                item.sex="m";
+                return item;
+            }else{
+                item.sex="n";
+                return item;
+            }
+        })
+        
+
+        Array.prototype.myMap=function (fnc){
+            var temp=[];
+            for(let i=0; i<this.length; i++){
+                temp.push(fnc(this[i],i));
+            }
+            return temp;
+        }
+        
+        var arr=peranle.myMap(function (item,index){
+            if(item.age==19){
+                item.sex="m";
+                return item;
+            }else{
+                item.sex="n";
+                return item;
+            }
+        })
+    </script>
+</body>
+</html>
