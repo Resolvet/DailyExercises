@@ -14,6 +14,9 @@ var state={
 var getters={
     count(state){
         return state.count;
+    },
+    isoradd(state){
+        return state.count % 2 ? '奇数' : '偶数'
     }
 }
 
@@ -28,6 +31,18 @@ var actions={
         if(state.count>5){
             commit("decrement");
         }
+    },
+    incrementAsync({commit}){
+        var p=new Promise((relove,res)=>{
+            setTimeout(()=>{
+                relove();
+            },3000)
+        })
+        p.then(()=>{
+            commit('increment');
+        }).catch((error)=>{
+            console.log(error);
+        })
     }
 }
 

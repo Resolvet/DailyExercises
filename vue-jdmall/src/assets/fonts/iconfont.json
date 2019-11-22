@@ -1,0 +1,58 @@
+{
+  "id": "1522214",
+  "name": "cms",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1382206",
+      "name": "发现",
+      "font_class": "faxian",
+      "unicode": "e649",
+      "unicode_decimal": 58953
+    },
+    {
+      "icon_id": "3022191",
+      "name": "扫一扫",
+      "font_class": "scan",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "3636926",
+      "name": "分类",
+      "font_class": "fenlei",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "9675214",
+      "name": "我 的",
+      "font_class": "wode",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "10196608",
+      "name": "home",
+      "font_class": "home",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "10811947",
+      "name": "消 息",
+      "font_class": "xiaoxi",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
+      "icon_id": "11331087",
+      "name": "购物 车",
+      "font_class": "gouwuche",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    }
+  ]
+}
