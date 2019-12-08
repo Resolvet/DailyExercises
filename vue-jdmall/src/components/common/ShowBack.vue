@@ -1,6 +1,6 @@
 <template>
     <div v-if="status" @click="backShow">
-        <img src="@/components/common/images/top.png" alt="">
+        <i class="iconfont icon-top"></i>
     </div>
 </template>
 <script>
@@ -34,8 +34,14 @@ export default {
         position: fixed;
         bottom: 200px;
         right: 20px;
-        img{
-            width: 100%;
+        border-radius: 50%;
+        background: #fff;
+        opacity: .5;
+        border: 1px solid #999;
+        text-align: center;
+        line-height: 50px;
+        i{
+          font-size: 20px;
         }
     }
 </style>

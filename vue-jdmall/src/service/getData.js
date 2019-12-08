@@ -19,3 +19,23 @@ export const getrecommended=(params)=>Http().require({
     api:"/getrecommended",
     params: params
 })
+
+export const getqueryId=(params)=>Http().require({
+    api:"/getqueryId",
+    params: params
+})
+
+export const getCategory=(params)=>Http().require({
+	api: '/getCategory',
+	params: params
+})
+
+export const foundGetselects=(params)=>Http().require({
+	api: '/foundGetselects',
+	params: params
+})
+
+export const getqueryShop=(params)=>Http().require({
+	api: '/getqueryShop',
+	params: params
+})

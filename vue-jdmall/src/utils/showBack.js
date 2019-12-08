@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 export const showBack=callBack =>{
     let oldScrollTop, //旧的距离
@@ -18,7 +18,7 @@ export const showBack=callBack =>{
     },{passive:true});
 
     document.addEventListener("touchend",()=>{
-        oldScrollTop=document.documentElement.scrollTop;
+        oldScrollTop=document.documentElement.scrollTop || document.body.scrollTop;
         moveEnd();
     },{passive:true});
 
@@ -26,7 +26,7 @@ export const showBack=callBack =>{
     const moveEnd=()=>{
         requestFrom=requestAnimationFrame(()=>{
             //当前滚动距离与结束距离对比
-            if(document.documentElement.scrollTop!=oldScrollTop){
+            if(document.documentElement.scrollTop!=oldScrollTop || document.body.scrollTop!=oldScrollTop){
                 oldScrollTop=document.documentElement.scrollTop;
                 moveEnd();
             }else{
@@ -38,7 +38,7 @@ export const showBack=callBack =>{
 
     //是否显示
     const showBackFun=()=>{
-        if(document.documentElement.scrollTop> showDist){
+        if(document.documentElement.scrollTop> showDist || document.body.scrollTop> showDist){
             callBack(true);
         }else{
             callBack(false);

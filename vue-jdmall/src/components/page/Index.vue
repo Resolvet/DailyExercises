@@ -1,11 +1,12 @@
 <template>
     <div class="jd">
-        <search></search>
+        <search v-if="handlevalus"></search>
         <load-more v-if="cmsData" ref="loadMore"
         :command="command"
         :topMethod="onRefreshCallback"
         :params="recommandParams"
         @loadMore="infinteCallback"
+        @change_hanle="handleVal"
         >
         <div class="jd_wrapp">
             <mt-swipe :prevent="true">
@@ -28,7 +29,7 @@
                 </li>
             </ul>
                 </mt-swipe-item>
-            </mt-swipe> 
+            </mt-swipe>
         </div>
         </div>
         <!-- 热门 -->
@@ -40,7 +41,7 @@
         </div>
         </div>
         <!-- 东家小院 -->
-        <recommended></recommended>
+        <recommended :cmsrecommenDate="cmsrecommenDate"></recommended>
         <!--  -->
         <div class="letter_wrapp">
         <div class="letters">
@@ -64,6 +65,8 @@
         </load-more>
         <show-back></show-back>
         <footer-view></footer-view>
+       <!-- {{RecommentData}}
+        {{cmsrecommenDate}} -->
     </div>
 </template>
 <script>
@@ -86,6 +89,7 @@ export default {
             cmsrecommenDate: [],
             RecommentData: [],
             command: getrecommended,
+            handlevalus: true,
             recommandParams: {
                 page: 0,
                 pageSize: 2
@@ -108,6 +112,7 @@ export default {
             this.pullParam.page++;
             if(this.pullParam.page==5){
                 this.pullParam.page=5;
+                this.$refs.loadMore.Loadmoreading=true;
             }
             try{
                 this.getrecommended(0,1);
@@ -146,7 +151,7 @@ export default {
                 pageSize: this.pullParam.pageSize
             });
             data.map(v=>{
-                this.cmsrecommenDate.push(v);  
+                this.cmsrecommenDate.push(v);
             })
         },
         async init (){
@@ -167,10 +172,13 @@ export default {
             }else{
                 this.getRem();
             }
+        },
+        handleVal (val){
+          this.handlevalus=val>10? false : true;
         }
     },
      created() {
-        this.init();  
+        this.init();
      },
      computed:{
         ...mapGetters['indexDate'],
@@ -206,8 +214,7 @@ export default {
     .jd{
         width: 100%;
         .jd_wrapp{
-            // .width();
-            height: 180px;
+            height: 220px;
             img{
                 width: 100%;
                 border: none;
@@ -263,7 +270,7 @@ export default {
                     width: 100%;
                 }
             }
-        } 
+        }
          }
          // letters
         .letter_wrapp{

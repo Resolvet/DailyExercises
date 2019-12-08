@@ -1,10 +1,11 @@
-import {getDataShou,getDataTabs,getDataRem,getrecommended} from '@/service/getData'
+import {getDataShou,getDataTabs,getDataRem,getrecommended,getqueryShop} from '@/service/getData'
 
 const cms={
     state: {
         indexDate:null,
         indexTabs:null,
-        indexRem: null
+        indexRem: null,
+        article: null
     },
     actions:{
         GetIndexCmsDate ({commit,state},param){
@@ -46,6 +47,16 @@ const cms={
                     reject(error);
                 })
             })
+        },
+        GetregetqueryShopDate ({commit,state},param){
+            return new Promise((resolve,reject)=>{
+                getqueryShop(param).then(res=>{
+                    commit('SET_article_CMS');
+                    resolve(res);
+                }).catch(error=>{
+                    reject(error);
+                })
+            })
         }
     },
     mutations:{
@@ -60,6 +71,9 @@ const cms={
         },
         SET_Recomm_CMS (state,data){
             state.indexReomm=data;
+        },
+        SET_article_CMS (state,data){
+            state. article=data;
         }
     }
 }

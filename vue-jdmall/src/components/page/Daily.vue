@@ -6,8 +6,8 @@
             </div>
             <div class="dailywrapp_box">
                 <ul>
-                    <li v-for="item in cmsrecommenDate" :key="item.id">
-                        <a href="#">
+                    <li v-for="item in cmsrecommenDate" :key="item.id" @click="()=>$router.push('/product/'+item.id)">
+                        <div>
                             <img :src="item.url" alt="">
                             <div>
                                 <span>{{item.title}}</span>
@@ -17,7 +17,7 @@
                                     <span>看相似</span>
                                 </p>
                             </div>
-                        </a>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -62,6 +62,7 @@ export default {
                     margin-right: 5px;
                 }
                 li{
+					          list-style: none;
                     float: left;
                     width: 49%;
                     padding: 5px;
@@ -69,7 +70,7 @@ export default {
                     padding-bottom: 20px;
                     margin-bottom: 3px;
                     box-sizing: border-box;
-                    a{
+                    div{
                         display: block;
                         width: 100%;
                         height: 100%;
@@ -133,7 +134,7 @@ export default {
                     }
                 }
              }
-         }    
+         }
         }
     }
 </style>

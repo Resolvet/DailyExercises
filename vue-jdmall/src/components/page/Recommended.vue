@@ -6,63 +6,13 @@
             </div>
             <div class="recommendedwrappBox">
                 <ul>
-                    <li>
-                        <a href="#">
+                    <li@click="()=>$router.push('/product/'+item.id)" v-for="item in cmsrecommenDate" :key="item.id">
+                        <div>
                             <b>免息星球</b>
                             <p>白条免息</p>
-                            <img src="../../assets/images/3.jpg" alt="">
-                        </a>
+                            <img :src="item.url" alt="">
+                        </div>
                     </li>
-                    <li>
-                        <a href="#">
-                            <b>免息星球</b>
-                            <p>白条免息</p>
-                            <img src="../../assets/images/3.jpg" alt="">
-                        </a>
-                    </li>
-                     <li>
-                        <a href="#">
-                            <b>免息星球</b>
-                            <p>白条免息</p>
-                            <img src="../../assets/images/3.jpg" alt="">
-                        </a>
-                    </li>
-                     <li>
-                        <a href="#">
-                            <b>免息星球</b>
-                            <p>白条免息</p>
-                            <img src="../../assets/images/3.jpg" alt="">
-                        </a>
-                    </li>
-                     <li>
-                        <a href="#">
-                            <b>免息星球</b>
-                            <p>白条免息</p>
-                            <img src="../../assets/images/3.jpg" alt="">
-                        </a>
-                    </li>
-                     <li>
-                        <a href="#">
-                            <b>免息星球</b>
-                            <p>白条免息</p>
-                            <img src="../../assets/images/3.jpg" alt="">
-                        </a>
-                    </li>
-                     <li>
-                        <a href="#">
-                            <b>免息星球</b>
-                            <p>白条免息</p>
-                            <img src="../../assets/images/3.jpg" alt="">
-                        </a>
-                    </li>
-                     <li>
-                        <a href="#">
-                            <b>免息星球</b>
-                            <p>白条免息</p>
-                            <img src="../../assets/images/3.jpg" alt="">
-                        </a>
-                    </li>
-                    
                 </ul>
             </div>
         </div>
@@ -70,7 +20,11 @@
 </template>
 <script>
 export default {
-    
+    props:{
+      cmsrecommenDate:{
+        type: Array
+      }
+    }
 }
 </script>
 <style lang="less" scoped>
@@ -91,7 +45,7 @@ export default {
                    display: block;
                }
            }
-        //    
+        //
         .recommendedwrappBox{
             width: 100%;
             background: #fff;
@@ -107,7 +61,7 @@ export default {
                     padding: 15px 10px;
                     box-sizing: border-box;
                     text-align: center;
-                   a{
+                   div{
                        width: 100%;
                        text-align: center;
                        text-decoration: none;
@@ -127,6 +81,6 @@ export default {
                 }
             }
         }
-        }   
+        }
     }
 </style>

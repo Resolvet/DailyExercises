@@ -1,5 +1,5 @@
 <template>
-    <div class="loadmore" id="loadmore" 
+    <div class="loadmore" id="loadmore"
     v-infinite-scroll="loadMoreScr"
     infinite-scroll-disabled="Loadmoreading"
     infinite-scroll-distance="20"
@@ -7,7 +7,7 @@
     <div class="loadmore-content"
     :style="{'transform': translate1}"
     >
-        <slot name="top">
+      <!--  <slot name="top">
             <div v-if="topMethod">
             <div class="loading_img" v-if="topStatus!=='loading'" :class="topStatus==='drop' ? 'drop' : 'pull'">
                 <img src="./images/1.gif" alt="" height="60">
@@ -18,7 +18,7 @@
                 <span>{{topText}}</span>
             </div>
             </div>
-        </slot>
+        </slot> -->
         <slot></slot>
         <slot name="LoadMoreText">
             <div v-if="!AllLoaded && Loadmoreading" class="loadmoreText">
@@ -44,6 +44,9 @@ export default {
     props:{
         topMethod:{
             type: Function,
+            defalut (){
+              Function
+            }
         },
         topPullText:{
             type: String,
@@ -106,30 +109,43 @@ export default {
               this.topText=this. toploadText
               break;
           }
-      }  
+      },
+      translate (val){
+        this.$emit("change_hanle",val);
+      }
     },
     methods: {
         async loadMoreScr (){
              this.topMethod();
             if(this.AllLoaded || this.Loadmoreading || !this.command || this.LoadMoreErr){
+
                 return;
             }
             this.Loadmoreading=true;
             let respone=await this.command(this.params).catch(()=>{
                 this.Loadmoreading=false;
                 this.LoadMoreErr=true;
+                this.translate=0;
                 throw new Error("THis is no undefiend:"+this.command);
             })
             if(respone){
                 this.AllLoaded=true;
                 this.Loadmoreading=false;
+                this.translate=0;
                 return;
             }
             setTimeout(()=>{
                 this.$emit('loadMore',respone);
                 this.params.pageNo++;
                 this.Loadmoreading=true;
+
             },1000)
+        },
+      async  handleoutRest (){
+            this.translate=0;
+            this.topStatus='pull';
+            this.AllLoaded= false;
+            await this.loadMoreScr();
         },
         handleout (){
             this.translate=0;
@@ -141,6 +157,7 @@ export default {
             this.$el.addEventListener('touchend',this.handleTouchEnd);
         },
         getScrollEventTarget (el){
+
             let curentNode=el;
             while (curentNode && curentNode.tagName!=='HTML' && curentNode.tagName!=='BODY'
               &&  curentNode.nodeType===1
@@ -170,6 +187,7 @@ export default {
             }
         },
       handleTouchStart (event){
+        this.translate=0;
         this.startY=event.touches[0].clientY;
         // this.startScrollTop=this.getScrollTop(this.scrollEventTarget);
         if(this.topStatus!=='loading'){
@@ -209,7 +227,7 @@ export default {
 <style lang="less" scoped>
 @import "../../assets/style/common.less";
     .loadmore{
-        transform: translateY(-60px);
+        // transform: translateY(-60px);
         width: 100%;
         .loading_img{
             width: 100%;
