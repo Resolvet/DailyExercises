@@ -1,0 +1,71 @@
+npm install vue-cli -g 全局安装
+npm install -g vue-cli@2.9.1
+
+vue init webpack my-app
+
+npm install -g @vue/cli-init
+
+npm uninstall vue-cli -g
+
+vue --vuesion  检测是否安装
+
+vue webpack vue-cli-demo  初始化文件    
+
+npm run dev   运行
+
+
+npm install --save vue-resource
+
+
+npm install -g @vue/cli@3.0.1
+
+vue-cli  3.0以上安装
+检测vue-cil方式  vue -V
+npm install -g @vue/cli   安装
+vue create vue-app  初始化
+cnpm install -S vuex  安装vuex
+npm i element-ui -S   elemenet-ui 安装方式
+npm install mint-ui -S   安装mint-ui方式
+vue ui 
+npm run build      打包
+npm uninstall -g @vue/cli
+
+
+
+https://element.eleme.cn/#/zh-CN  
+
+
+reset.css//清除默认样式        fastclick//移动端点击       project
+
+
+
+
+
+
+
+ git clone git@gitee.com:lxhking/Travel.git     下载网上资料
+
+git status 
+
+git add .
+git commit -m '3132'
+git push
+
+
+npm install stylus --save    
+npm install stylus-loader  --save
+
+
+
+
+
+
+
+
+git pull          git checkout 【新分支名字】
+
+分支开发 git status      git add .      git commit -m 'change'   git push 
+git checkout master      git merge origin/【index-swiper('分支名')】 git push
+
+删除 git rm --cached -r 1.js           git commit -m "remov"    git push
+
