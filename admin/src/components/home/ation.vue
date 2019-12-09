@@ -10,14 +10,25 @@
           <el-upload
             ref="upload"
             class="avatar-uploader"
-            action="http://127.0.0.1:9988/upload"
+            action="https://jsonplaceholder.typicode.com/posts/"
             :show-file-list="false"
             :on-success="handleAvatarSuccess"
-            :before-upload="beforeAvatarUpload">
+            :before-upload="beforeAvatarUpload"
+            :on-change="changeData"
+            >
             <img v-if="imageUrl" :src="imageUrl" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
           <el-button  size="small" type="success" @click="submitUpload">上传</el-button>
+<el-form :inline="true" :model="form" class="demo-form-inline">
+           <el-form-item label="活动区域">
+              <el-select v-model="form.region" placeholder="请选择活动区域">
+                <el-option label="区域一" value="shanghai"></el-option>
+                <el-option label="区域二" value="beijing"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-button type="primary" @click="onSubmit">立即创建</el-button>
+            </el-form>
       </el-col>
     </el-row>
   </div>
@@ -29,13 +40,19 @@
     name: "ation",
     data (){
       return {
-        imageUrl: ''
+        imageUrl: '',
+        form: {
+          region: ''
+        }
       }
     },
     methods:{
        handleAvatarSuccess(res, file) {
                this.imageUrl = URL.createObjectURL(file.raw);
              },
+             onSubmit() {
+                     console.log(this.form.region);
+                   },
              beforeAvatarUpload(file) {
                     const isJPG = file.type === 'image/jpeg';
                     const isLt2M = file.size / 1024 / 1024 < 2;
@@ -48,10 +65,15 @@
                     }
                     return isJPG && isLt2M;
                   },
-                   submitUpload() {
+                  submitUpload() {
                           this.$refs.upload.submit();
-                          console.log(this.$refs)
                         },
+
+                        changeData (n){
+                          console.log(n)
+                          console.log(1222)
+                        },
+
     },
     components:{
         HeaderLang,

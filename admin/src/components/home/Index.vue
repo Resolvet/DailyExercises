@@ -126,6 +126,7 @@
                console.log("Index的值")
              },
         clockhanele (n){
+          console.log(n)
           this.flag=true;
           this.content=n.content;
           this.title=n.title;
@@ -200,6 +201,7 @@
      },
   mounted (){
     this.t();
+    console.log(window.location.href);
   }
   }
 </script>
