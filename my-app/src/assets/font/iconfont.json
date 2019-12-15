@@ -1,0 +1,114 @@
+{
+  "id": "1485442",
+  "name": "king",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "101272",
+      "name": "书籍",
+      "font_class": "shuji",
+      "unicode": "e64e",
+      "unicode_decimal": 58958
+    },
+    {
+      "icon_id": "181902",
+      "name": "读小说",
+      "font_class": "duxiaoshuo",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "666898",
+      "name": "娱乐",
+      "font_class": "yule",
+      "unicode": "e699",
+      "unicode_decimal": 59033
+    },
+    {
+      "icon_id": "1318930",
+      "name": "电影院",
+      "font_class": "dianying",
+      "unicode": "e67d",
+      "unicode_decimal": 59005
+    },
+    {
+      "icon_id": "1642639",
+      "name": "照片01",
+      "font_class": "picture",
+      "unicode": "e69a",
+      "unicode_decimal": 59034
+    },
+    {
+      "icon_id": "2075250",
+      "name": "发现",
+      "font_class": "faxian",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "2121734",
+      "name": "精品",
+      "font_class": "jingpin",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "3315129",
+      "name": "我的",
+      "font_class": "wode",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "3865699",
+      "name": "课程",
+      "font_class": "kecheng",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "5048430",
+      "name": "美食-甜甜圈",
+      "font_class": "tiantianquan",
+      "unicode": "e65b",
+      "unicode_decimal": 58971
+    },
+    {
+      "icon_id": "5158719",
+      "name": "音乐",
+      "font_class": "yinle",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "5195343",
+      "name": "体育用品",
+      "font_class": "tiyuyongpin",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "7621979",
+      "name": "小于号",
+      "font_class": "xiaoyuhao-copy",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "11124956",
+      "name": "首页",
+      "font_class": "1",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "11125228",
+      "name": "订单",
+      "font_class": "6",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    }
+  ]
+}
