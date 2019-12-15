@@ -6,6 +6,8 @@ import order from '@/components/home/order'
 import Navig from '@/components/home/navig'
 import ation from '@/components/home/ation'
 import select from '@/components/home/select'
+import op from '@/components/home/op'
+import shop from '@/components/home/shop'
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -50,6 +52,16 @@ export default new Router({
       path: '/select',
       name: 'select',
       component: select,
-    }
+    },
+    {
+      path: '/op',
+      name: 'op',
+      component: op,
+    },
+   {
+     path: '/shop',
+     name: 'shop',
+     component: shop,
+   }
   ]
 })
