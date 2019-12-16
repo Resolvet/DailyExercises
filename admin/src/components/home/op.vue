@@ -1,149 +1,143 @@
 <template>
-  <div>
-  <el-tabs v-model="activeName" @tab-click="handleClick" :stretch="true">
-    <el-tab-pane label="所有订单" name="first">
-     <div class="container">
-        <el-input placeholder="请输入内容"  class="input-with-select">
-           <el-button slot="append" type="primary" icon="el-icon-search">搜索2</el-button>
-         </el-input>
-
-         <el-table
-             :data="tableData"
-             border
-             stripe
-             fit
-              ref="multipleTable"
-             @selection-change="handleSelectionChange"
-             style="width: 100%;margin-top: 20px;">
-             <el-table-column
-                   type="selection"
-                   width="55">
-                 </el-table-column>
-             <el-table-column
-               fixed
-               prop="date"
-               label="所有订单"
-               width="150">
-             </el-table-column>
-             <el-table-column
-               prop="name"
-               label="金额"
-               width="120">
-             </el-table-column>
-             <el-table-column
-               prop="pic"
-               label="数量"
-               width="120">
-             </el-table-column>
-             <el-table-column
-               prop="province"
-               label="交易状态"
-               width="120">
-             </el-table-column>
-             <el-table-column
-               prop="city"
-               label="商品操作"
-               width="120">
-             </el-table-column>
-
-             <el-table-column
-               prop="province"
-               label="交易操作"
-               width="120">
-             </el-table-column>
-             <el-table-column
-               prop="zip"
-               label="实付款"
-               width="120">
-             </el-table-column>
-             <el-table-column
-               fixed="right"
-               label="操作"
-               width="300">
-               <template slot-scope="scope">
-                <el-button type="primary" size="mini">确认收货</el-button>
-               </template>
-             </el-table-column>
-           </el-table>
-            <el-button @click="toggleSelection()">取消选择</el-button>
-            <div v-if="sum">
-              总价：0
-            </div>
-     </div>
-    </el-tab-pane>
-    <el-tab-pane label="代付款" name="first1">待付款</el-tab-pane>
-    <el-tab-pane label="代发货" name="second">代发货</el-tab-pane>
-    <el-tab-pane label="待收货" name="third">待收货</el-tab-pane>
-    <el-tab-pane label="待评价" name="fourth">待评价</el-tab-pane>
-  </el-tabs>
-<!-- <input type="text" value="1" onkeyup="value=(parseInt((value=value.replace(/\D/g,''))==''||parseInt((value=value.replace(/\D/g,''))==0)?'1':value,10))"> -->
-
-  </div>
+	<div>
+		<div id="app" v-cloak>		
+				<table>
+		
+					<thead>
+		
+						<tr>
+		
+							<th><input type="checkbox" v-on:click="swapCheck" v-model="checked"></th>
+		
+							<th>商品名称</th>
+		
+							<th>商品单价</th>
+		
+							<th>商品数量</th>
+		
+							<th>操作</th>
+						</tr>
+					</thead>
+		
+					<tbody>
+		
+						<tr v-for="(item,index) in list">
+		
+							<td><input type="checkbox" v-model="selectList" :id="item.id" :value="index" name="selectList"></td>
+		
+							<td>{{ item.name }}</td>
+		
+							<td>{{ item.price }}</td>
+		
+							<td>
+								<button @click="handleReduce(index)" :disabled="item.count === 1">-</button> 
+								<input type="number" v-model="item.count" class="sum" v-on:input="calculate(item)">
+								<button @click="handleAdd(index)">+</button>
+							</td>
+		
+							<td><button @click="handleRemove(index)">删除</button></td>
+						</tr>
+						<tr>
+							<td colspan="5" style="text-align: right;">合计：￥ {{ totalPrice }} 元</td>
+						</tr>
+					</tbody>
+				</table>
+		</div>
+	</div>
 </template>
+
 <script>
-  export default {
-    data() {
-      return {
-        activeName: 'first',
-        sum: null,
-        tableData: [{
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    pic: 19,
-                    check: false
-                  },
-                  {
-                              date: '2016-05-02',
-                              name: '王小虎',
-                              pic: 168,
-                              address: '上海市普陀区金沙江路 1518 弄',
-                              check: false
-                            }
-                  ],
-                   multipleSelection: []
-      };
-    },
-    methods: {
-      handleClick(tab, event) {
-        console.log(tab, event);
-      },
-    toggleSelection(rows) {
-            if (rows) {
-              rows.forEach(row => {
-                this.$refs.multipleTable.toggleRowSelection(row);
-              });
-            } else {
-              this.$refs.multipleTable.clearSelection();
-            }
-          },
-          handleSelectionChange(val) {
-            this.multipleSelection = val;
-            console.log(val);
-            let sum=0;
-            if(val.length>0){
-              this.sum=true;
-              val.forEach((item,index)=>{
-                sum+=item.pic*2;
-              })
-              console.log(sum);
-            }else{
-              this.sum=false;
-            }
-          }
-    }
-  };
+	export default {
+		data (){
+			return {
+				list: [{
+						id: 1,
+						name: 'iphone 8',
+						price: 5688,
+						count: 1
+					},
+					{
+						id: 2,
+						name: 'iphone 9',
+						price: 6688,
+						count: 1
+					},
+					{
+						id: 3,
+						name: 'iphone 10',
+						price: 8688,
+						count: 1
+					}
+				],
+				selectList: [],
+				checked: false
+			}
+		},
+		computed:{
+			totalPrice: function() {
+				var total = 0;
+				for(var i = 0, len = this.selectList.length; i < len; i++) {
+					var index = this.selectList[i];
+					var item = this.list[index];
+					if(item) {
+						total += item.price * item.count;
+					} else {
+						continue;
+					}
+				}
+				return total.toString().replace(/\B(?=(\d{3})+$)/g, ',');
+			} 
+		},
+		methods:{
+			handleReduce: function(index) {
+				var item = this.list[index];
+				if(item.count < 2) {
+					return;
+				}
+				item.count--;
+			},
+			handleAdd: function(index) {
+				var item = this.list[index];
+				item.count++;
+			},
+			handleRemove: function(index) {
+				this.list.splice(index, 1);
+			},
+			swapCheck: function() {
+				var selectList = document.getElementsByName('selectList');
+				var len = selectList.length;
+				if(this.checked) {
+					for(var i = 0; i < len; i++) {
+						var item = selectList[i];
+						item.checked = false;
+					}
+					this.checked = false;
+					this.selectList = [];
+				} else {
+					for(i = 0; i < len; i++) {
+						item = selectList[i];
+						if(item.checked === false) {
+							item.checked = true;
+							this.selectList.push(selectList[i].value);
+						}
+					}
+					this.checked = true;
+			
+				}
+			},
+			calculate(pro){
+			                    let oldsum=pro.price//之前的总价
+			                    let oldnum=oldsum/pro.price//之前的数量
+			                    pro.count=parseInt(pro.count)
+			                    pro.count>0?pro.pirc=pro.count*pro.price:pro.count=oldnum//如果输入数量大于0，计算价格，否则返回之前的数量
+			                   console.log(111)
+			                }
+		}
+	}
 </script>
 <style>
-  .container{
-   margin: 10px 20px;
-  }
-  .el-tabs__item:hover{
-    color: #FF4401;
-  }
-  .el-tabs__item.is-active {
-      color: #ff4401;
-  }
-  .el-tabs__active-bar{
-    background-color: #FF4401;
-  }
+	[v-cloak] {display: none;}
+	table {border-collapse: collapse;border-spacing: 0;empty-cells: show; width: 100%;}
+	th,td {padding: 8px 16px;border: 1px solid #fff;text-align: center;}
+	th {background-color: deeppink;}
 </style>
