@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bg{
+            background: #999;
+        }
+    </style>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-resource.js"></script>
+</head>
+<body>
+    <!-- https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su   wd -->
+    <div id="box">
+        <input type="text" v-model="t1" @keyup="get($event)" @keydown.down="changdot" @keydown.prevent.up="changup($event)">
+        <ul>
+            <li v-for="(item,index) in myData" :class="{bg:index==Index}">{{item}}</li>
+        </ul>
+    </div>
+    <script>
+        var vm=new Vue({
+            el:"#box",
+            data:{
+                myData:[],
+                t1:'',
+                Index:-1
+            },
+            methods: {
+                get:function (ev){
+                    if(ev.keyCode==38 || ev.keyCode==40) return;
+                    if(ev.keyCode==13){
+                        window.open("https://www.baidu.com/s?wd="+this.t1);
+                        this.t1="";
+                    }
+                    this.$http.jsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",{
+                        wd:this.t1
+                    },{
+                        jsonp:"cb"
+                    }).then(function (res){
+                        this.myData=res.data.s;
+                    },function (){
+                        console.log(2)
+                    })
+                },
+                changdot:function () {
+                    this.Index++;
+                    this.t1=this.myData[this.Index]
+                    if(this.Index>this.myData.length-1){
+                        this.Index=0;
+                    }
+                },
+                changup:function (ev){
+                    this.Index--;
+                    this.t1=this.myData[this.Index];
+                    if(this.Index<0){
+                        this.Index=this.myData.length-1;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 	<div>
 		<div id="app" v-cloak>		
 				<table>
@@ -125,13 +125,13 @@
 			
 				}
 			},
-			calculate(pro){
-			                    let oldsum=pro.price//之前的总价
-			                    let oldnum=oldsum/pro.price//之前的数量
-			                    pro.count=parseInt(pro.count)
-			                    pro.count>0?pro.pirc=pro.count*pro.price:pro.count=oldnum//如果输入数量大于0，计算价格，否则返回之前的数量
-			                   console.log(111)
-			                }
+			// calculate(pro){
+			//                     let oldsum=pro.price//之前的总价
+			//                     let oldnum=oldsum/pro.price//之前的数量
+			//                     pro.count=parseInt(pro.count)
+			//                     pro.count>0?pro.pirc=pro.count*pro.price:pro.count=oldnum//如果输入数量大于0，计算价格，否则返回之前的数量
+			//                    console.log(111)
+			//                 }
 		}
 	}
 </script>
@@ -140,4 +140,4 @@
 	table {border-collapse: collapse;border-spacing: 0;empty-cells: show; width: 100%;}
 	th,td {padding: 8px 16px;border: 1px solid #fff;text-align: center;}
 	th {background-color: deeppink;}
-</style>
+</style> -->
