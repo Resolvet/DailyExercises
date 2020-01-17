@@ -1,15 +1,14 @@
 <template>
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
-		<!-- {{num}} -->
-		<!-- <button @click="incer">点击同步添加</button> -->
+		{{num}}
+		<button @click="increment">点击同步添加</button> 
 		<!-- <button @click="asyn">异步添加</button> -->
 		
 		<!-- <div class=" ql-editor">
 				<HelloWorld></HelloWorld>
-		</div> -->
+		</div>
 		
-		<!--  -->
 		<!-- <el-form-item label="图标">
 		  <el-upload
 		    class="avatar-uploader"
@@ -21,7 +20,7 @@
 		    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
 		  </el-upload>
 		</el-form-item> -->
-		<div class="bought">
+		<!-- <div class="bought">
 			<div class="bought_title">
 				<ul>
 					<li>宝贝</li>
@@ -61,8 +60,8 @@
 				</div>
 			</div>
 			</div>
-		</div>
-  </div>
+		</div>-->
+  </div> 
 </template>
 
 <script>
@@ -80,14 +79,22 @@ export default {
     HelloWorld
   },
   methods:{
-	// ...mapMutations(['increment']),
+	...mapMutations(['increment']),
+	increment (){
+		this.$store.dispatch('increment');
+	},
 	// incer (){
 	// 	this.$store.commit('increment');
 	// }
-	...mapActions(['asyn']),
-	asyn (){
-		this.$store.dispatch('ayz2');
-	}
+	// ...mapActions(['asyn']),
+	// asyn (){
+	// 	this.$store.dispatch('ayz2');
+	// }
+	// ...mapActions(['asyn']),
+	// asyn (){
+	// 	// this.$store.commit('increment');
+	// 	this.$store.dispatch('ayz2');
+	// }
   },
   computed:{
 	  ...mapGetters(['num']) 

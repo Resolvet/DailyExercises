@@ -8,6 +8,7 @@ import ation from '@/components/home/ation'
 import select from '@/components/home/select'
 import op from '@/components/home/op'
 import shop from '@/components/home/shop'
+import scrollList from '@/components/home/scrollList'
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -62,6 +63,11 @@ export default new Router({
      path: '/shop',
      name: 'shop',
      component: shop,
+   },
+   {
+     path: '/scrollList',
+     name: 'scrollList',
+     component: scrollList,
    }
   ]
 })

@@ -5,7 +5,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 
 var state = {
-	num: 0
+	num: 4
 };
 
 var getters={
