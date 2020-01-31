@@ -5,6 +5,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'animate.css'
 import filters from '@/utils/filters'
+import store from '@/store/index'
 /**
  * 清除默认样式
  */
@@ -18,6 +19,7 @@ Vue.use(ElementUI);
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

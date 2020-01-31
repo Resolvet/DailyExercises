@@ -9,6 +9,7 @@ import select from '@/components/home/select'
 import op from '@/components/home/op'
 import shop from '@/components/home/shop'
 import scrollList from '@/components/home/scrollList'
+import xxxx from '@/components/home/xxxx'
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -68,6 +69,11 @@ export default new Router({
      path: '/scrollList',
      name: 'scrollList',
      component: scrollList,
+   },
+   {
+     path: '/xxxx',
+     name: 'xxxx',
+     component: xxxx,
    }
   ]
 })
