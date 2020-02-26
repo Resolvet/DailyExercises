@@ -1,7 +1,7 @@
 import Http from '@/utils/http'
 
-export const getDataShou=(params)=>Http().require({
-    api: "/getDataRem",
+export const ideasty=(params)=>Http().require({
+    api: "/ideas",
     params: params
 })
 

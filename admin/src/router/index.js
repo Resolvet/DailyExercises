@@ -10,6 +10,9 @@ import op from '@/components/home/op'
 import shop from '@/components/home/shop'
 import scrollList from '@/components/home/scrollList'
 import xxxx from '@/components/home/xxxx'
+import poxy from '@/components/home/poxy'
+import app from '@/components/home/app'
+import index1 from '@/components/home/index1'
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -18,7 +21,7 @@ Router.prototype.push = function push(location) {
 
 Vue.use(Router)
 
-
+// https://zhuanlan.zhihu.com/p/54112006
 export default new Router({
   routes: [
     {
@@ -34,6 +37,9 @@ export default new Router({
       path: '/nav',
       name: 'nav',
       component: Nav,
+	  // beforeEnter: (to, from, next) =>{
+		 //  next();
+	  // }
     },
     {
       path: '/order',
@@ -74,6 +80,21 @@ export default new Router({
      path: '/xxxx',
      name: 'xxxx',
      component: xxxx,
-   }
+   },
+	 {
+	   path: '/poxy',
+	   name: 'poxy',
+	   component: poxy,
+	 },
+	 {
+	   path: '/app',
+	   name: 'app',
+	   component: app,
+	 },
+	 {
+	   path: '/index1',
+	   name: 'index1',
+	   component: index1,
+	 }
   ]
 })

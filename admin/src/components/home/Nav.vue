@@ -105,6 +105,9 @@
         }
       }
     },
+		beforeRouteEnter (to, from, next) {
+			console.log(to, from)
+		},
     methods:{
       onEditorBlur(editor) {
             // console.log('editor blur!', editor)

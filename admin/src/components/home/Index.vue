@@ -7,18 +7,14 @@
         </el-col>
         <el-col :span="20">
               <el-table
-                  :data="this.tabData"
+                  :data="tabData"
                   border
                   style="width: 100%">
                   <el-table-column
                     fixed
                     prop="date"
                     label="日期"
-                    width="150">
-                     <template slot-scope="scope">
-                            <i class="el-icon-time"></i>
-                            <span style="margin-left: 10px">{{scope.row.date | FromDate}}</span>
-                     </template>
+                    width="260">
                   </el-table-column>
                   <el-table-column
                     prop="title"
@@ -27,37 +23,17 @@
                     >
                   </el-table-column>
                   <el-table-column
-                    prop="content"
+                    prop="details"
                     label="内容"
                     width="500">
                   </el-table-column>
-                  <el-table-column
-                    prop="give"
-                    label="市区"
-                    width="100">
-                  </el-table-column>
-                  <el-table-column
-                    prop="love"
-                    label="喜欢"
-                    width="100">
-                  </el-table-column>
-                  <el-table-column
-                    prop="message"
-                    label="留言"
-                    width="100">
-                  </el-table-column>
-                  <el-table-column
-                    prop="urlImage"
-                    label="头像"
-                    width="150">
-                  </el-table-column>
-
+                  
                   <el-table-column
                     fixed="right"
                     label="操作"
                     width="100">
                     <template slot-scope="scope">
-                      <el-button  type="text" size="small">查看</el-button>
+                      <el-button  type="text" @click="del(scope.row.id)" size="small">删除</el-button>
                       <el-button type="text" size="small"  @click="clockhanele(scope.row)">编辑</el-button>
                     </template>
                   </el-table-column>
@@ -67,54 +43,84 @@
       <div class="flagShow" v-if="flag" @click.stop="haleClick">
           <el-form class="flagShowWrapp" :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
             <el-form-item label="标题">
-              <el-input v-model="title"></el-input>
+              <el-input v-model="from.title"></el-input>
             </el-form-item>
             <el-form-item label="内容">
-              <el-input v-model="content"></el-input>
-            </el-form-item>
-            <el-form-item label="点赞">
-              <el-input v-model="give"></el-input>
+              <el-input v-model="from.details"></el-input>
             </el-form-item>
              <el-form-item>
                 <el-button type="primary" @click="PostClick">修改</el-button>
               </el-form-item>
           </el-form>
       </div>
-			<el-backtop :visibility-height="100"  :bottom="10">
-			   <div
-			     style="
-			       height: 100%;
-			       width: 100%;
-			       background-color: #f2f5f6;
-			       box-shadow: 0 0 6px rgba(0,0,0, .12);
-			       text-align: center;
-			       line-height: 40px;
-			       color: #1989fa;
-			     "
-			   >
-			     UP
-			   </div>
-			 </el-backtop>1
+	  
+	  <div class="box" style="width: 500px; margin: 300px auto;">
+		  <el-form  :label-position="labelPosition" label-width="80px" :model="login">
+		    <el-form-item label="name">
+		      <el-input v-model="login.name"></el-input>
+		    </el-form-item>
+		    <el-form-item label="邮箱">
+		      <el-input v-model="login.eameil"></el-input>
+		    </el-form-item>
+			<el-form-item label="密码">
+			  <el-input v-model="login.password"></el-input>
+			</el-form-item>
+		     <el-form-item>
+		        <el-button type="primary" @click="onsubmit">注册</el-button>
+		      </el-form-item>
+		  </el-form>
+	  </div>
+	  
+	  
+	  
+	  <!-- 登录 -->
+	  <div class="box" style="width: 500px;margin: 20px auto;">
+	  		  <el-form  :label-position="labelPosition" label-width="80px" :model="loging">
+	  		    <el-form-item label="邮箱">
+	  		      <el-input v-model="loging.eameil"></el-input>
+	  		    </el-form-item>
+	  			<el-form-item label="密码">
+	  			  <el-input v-model="loging.password"></el-input>
+	  			</el-form-item>
+	  		     <el-form-item>
+	  		<el-button type="primary" @click="logingr" style="padding: 10px;">登录</el-button>
+	  		      </el-form-item>
+	  		  </el-form>
+	  </div>
+	  
     </div>
 </template>
 <script>
-   import {getDataShou,getrecommended,foundGetselects} from '@/server/server'
+   import {ideasty,getrecommended,foundGetselects} from '@/server/server'
    import HandHeader from '@/components/common/Header.vue'
    import LeftNav from '@/components/common/LeftNav.vue'
+   import axios from 'axios';
   export default {
     name: "Index",
      data (){
         return {
                flag: false,
                tabData: [],
-               content: '',
                give: '',
-               title: '',
+              from: {
+				 title: '',
+				 details: ''
+			  },
                params:{
                  type: 'selects',
                  page: 0,
                  pagesize: 2
                },
+			   login:{
+				   name: '',
+				   eameil: '',
+				   password: ''
+			   },
+			   loging:{
+			   		name: '',
+			   		eameil: '',
+			   		password: ''
+			   },
                labelPosition: 'right',
                        formLabelAlign: {
                          name: '',
@@ -143,20 +149,31 @@
         clockhanele (n){
           console.log(n)
           this.flag=true;
-          this.content=n.content;
-          this.title=n.title;
-          this.give=n.give;
+          this.from.details=n.details;
+          this.from.title=n.title;
+		  this.from.id=n.id;
         },
         PostClick (){
            this.flag=false;
+		   axios.post('http://127.0.0.1:5000/update',{data:this.from}).then(res=>{
+			   this.ax()
+		   })
         },
       haleClick (){
          // this.flag=false;
       },
 
+	onsubmit(){
+		axios.post('http://127.0.0.1:5000/register',{data:this.login}).then(res=>{
+			
+		})
+	},
 
-
-
+	logingr (){
+		axios.post('http://127.0.0.1:5000/login',{data:this.login}).then(res=>{
+			
+		})
+	},
 
 
 
@@ -174,11 +191,7 @@
           this.multipleSelection = val;
         },
           async t (){
-            let {data}=await foundGetselects({
-              type: this.params.type,
-              page: this.params.page,
-              pagesize: this.params.pagesize
-            })
+            let {data}=await ideasty({})
                 data.forEach((v,index)=>{
                  this.tabData.push({
                    date: v.ctime,
@@ -212,11 +225,38 @@
              console.log("m的"+m);
              this.t();
              this.tabData=[]
-          }
+          },
+		  del (id){
+			console.log(id)
+			axios({
+			  method:'delete',
+			  url:'http://127.0.0.1:5000/delete',
+			  params:{id:id}
+			}).then((res)=>{
+				console.log(res)
+				this.ax()
+			})
+		  },
+		  ax (){
+			 let arr=[];
+			axios.get('http://127.0.0.1:5000/ideas',{
+			}).then(res=>{
+				res.data.result.forEach((item,index)=>{
+					arr.push({
+						id: item._id,
+						title: item.title,
+						date: item.date,
+						details: item.details
+					})
+				})
+			})
+			this.tabData=arr;
+		  },
      },
   mounted (){
-    this.t();
-    console.log(window.location.href);
+    // this.t();
+    // console.log(window.location.href);
+	this.ax();
   }
   }
 </script>

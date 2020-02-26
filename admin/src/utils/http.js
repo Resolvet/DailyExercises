@@ -6,7 +6,7 @@ import axios from 'axios'
 
  class Http {
      constructor (){
-         this.domain='http://www.xiaozhuzhu.fun:12345'
+         this.domain='http://127.0.0.1:5000'
      }
      /** 得到一个Promise请求
       * options-api  请求一个地址的url
