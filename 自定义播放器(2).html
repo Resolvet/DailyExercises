@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 100px;
+        }
+        .box{
+            width: 500px;
+            height: 15px;
+            background: #999;
+            position: relative;
+        }
+        #box_nre{
+            width: 0px;
+            height: 15px;
+            background: blue;
+            position: absolute;
+
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="播放" id="play">
+    <input type="button" value="暂停" id="pause">
+    <input type="button" value="快进" id="go">
+    <input type="button" value="后退" id="blak">
+    <input type="button" value="静音" id="muted">
+    <input type="button" value="提升声音" id="volume1">
+    <input type="button" value="减少声音" id="volume2">
+    <br>
+    进度条：<div class="box">
+        <div id="box_nre"></div>
+    </div>
+    <br><br>
+    <video src="images/01-HTML5-今天任务说明.mp4" width="600" poster="images/timg.jpg" id="v"></video>
+    <script>
+        var v=document.getElementById("v");
+        var box=document.getElementsByClassName("box")[0];
+        document.getElementById("play").onclick=function (){
+            v.play();
+        }
+        document.getElementById("pause").onclick=function (){
+            v.pause();
+        }
+        var t=document.getElementById("v");
+        t.addEventListener("ended",function (){
+            alert("1");
+        })
+        document.getElementById("go").onclick=function(){
+            var time=v.currentTime;
+            v.currentTime=time+5;
+        }
+        document.getElementById("blak").onclick=function (){
+            var time=v.currentTime;
+            v.currentTime=time-5;
+        }
+        document.getElementById("muted").onclick=function(){
+            // if(v.muted){
+            //     v.muted=false;
+            // }else{
+            //     v.muted=true;
+            // }
+            v.muted=!v.muted;
+        }
+        document.getElementById("volume1").onclick=function(){
+            var curvolume=v.volume;
+            var newvolume=curvolume+0.1;
+            v.volume=newvolume>1?1:newvolume;
+        }
+        document.getElementById("volume2").onclick=function(){
+            var curvolume=v.volume;
+            var newvolume=curvolume-0.1;
+            v.volume=newvolume<0?0:newvolume;
+        }
+        v.onplay=function(){
+            setInterval(function(){
+                var time=v.currentTime;
+                var alltime=v.duration;
+                var ls=time/alltime*500;
+                document.getElementById("box_nre").style.width=ls+"px";
+            },500)
+        }
+        box.onclick=function(e){
+            var l=window.event || e;
+            var mx=l.layerX || l.offsetX;
+            var ctime=mx/500*v.duration;
+            v.currentTime=ctime; 
+            document.getElementById("box_nre").style.width=mx+"px";
+        }
+        // dir/s  color a
+    </script>
+</body>
+</html>
