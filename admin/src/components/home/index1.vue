@@ -21,7 +21,6 @@ export default {
     },
     methods:{
         keyboard (){
-			
             document.addEventListener('keypress', e => {
                 this.lowercase.forEach((item,index) => {
 					this.lowercase[index].forEach((item, key) => {

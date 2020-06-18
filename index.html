@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let  liarr = [] ;
+        let obj = [
+            {msg: 'A',url:'1.jpg'},
+            {msg: 'B',url:'2.jpg'},
+            {msg: 'C',url:'3.jpg'},
+            {msg: 'D',url:'4.jpg'},
+            {msg: 'E',url:'5.jpg'},
+            {msg: 'F',url:'7.jpg'},
+            {msg: 'G',url:'9.jpg'}
+        ]
+
+        let arr = obj.splice(0,4);
+        console.log(arr,obj);
+        liarr.push(arr,obj);
+        console.log(liarr)
+
+        // liarr.forEach((item,index) => {
+        //     item.forEach((items,indexs) => {
+        //         console.log(items)
+        //     })
+        // })
+       
+        //   [  我想要得到的答案
+        //    [{},{},{},{}],
+        //    [{},{},{}]
+        //   ]
+    </script>
+</body>
+</html>
